@@ -23,24 +23,18 @@ public:
     TreeNode* sortedListToBST(ListNode* head) {
         return buildBST(head);
     }
-    
 private:
     TreeNode* buildBST(ListNode* head) {
         if (!head) return nullptr;
         if (!head->next) return new TreeNode(head->val);
-        
-        // Find the middle element
         ListNode* slow = head;
         ListNode* fast = head;
         ListNode* prev = nullptr;
-        
         while (fast && fast->next) {
             prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
-        
-        // Disconnect left half from the middle
         if (prev) {
             prev->next = nullptr;
         }
