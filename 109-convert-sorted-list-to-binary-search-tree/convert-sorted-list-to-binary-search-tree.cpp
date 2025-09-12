@@ -44,11 +44,7 @@ private:
         if (prev) {
             prev->next = nullptr;
         }
-        
-        // Middle becomes the root
         TreeNode* root = new TreeNode(slow->val);
-        
-        // Recursively build left and right subtrees
         root->left = buildBST(head == slow ? nullptr : head);
         root->right = buildBST(slow->next);
         return root;
