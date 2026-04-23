@@ -1,53 +1,53 @@
-class Solution {
+class Solution{
+    private:
+    int first(vector<int> &nums,int target){
+       int s=0;
+       int e=nums.size()-1;
+       int mid=s+(e-s)/2;
+       int ans=-1;
+       while(s<=e){
+        if(nums[mid]==target){
+            ans=mid;
+            e=mid-1;
+        }
+        else if(nums[mid]<target){
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+       } 
+       return ans;
+    }
+    int second(vector<int> &nums,int target){
+       int s=0;
+       int e=nums.size()-1;
+       int mid=s+(e-s)/2;
+       int ans=-1;
+       while(s<=e){
+        if(nums[mid]==target){
+            ans=mid;
+            s=mid+1;
+        }
+        else if(nums[mid]<target){
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+       } 
+       return ans;
+    }
+    
 public:
-    int firstsearch(vector<int>& nums, int target) {
-     int i=0;
-      int j=nums.size()-1;
-       int mid=i+(j-i)/2;
-     int ans=-1;
-     while(i<=j){
-        if (nums[mid]== target)
-        {
-            ans=mid;
-            j=mid-1;
-        }
-        else if(nums[mid]<target){
-            i=mid+1;
-        }
-        else{
-            j=mid-1;
-        }
-        mid=i+(j-i)/2;
-        
-    }
-    return ans;
-    }
-     int secondsearch(vector<int>& nums, int target) {
-    int i=0;
-    int j=nums.size()-1;
-    int mid=i+(j-i)/2;
-    int ans=-1;
-    while(i<=j){
-        if (nums[mid]== target)
-        {
-            ans=mid;
-            i=mid+1;
-        }
-        else if(nums[mid]<target){
-            i=mid+1;
-        }
-        else{
-            j=mid-1;
-        }
-        mid=i+(j-i)/2;
-        
-    }
-    return ans;
-}
-vector<int> searchRange(vector<int>&nums,int target){
-    int first=firstsearch(nums,target);
-      int second=secondsearch(nums,target);
-      return {first,second};
-}
-
+    vector<int> searchRange(vector<int> &nums, int target) {
+       vector<int>ans;
+       int firstind= first(nums,target);
+       int secondind =second(nums,target);
+       ans.push_back(firstind);
+       ans.push_back(secondind);
+       return ans;
+    }    
 };
